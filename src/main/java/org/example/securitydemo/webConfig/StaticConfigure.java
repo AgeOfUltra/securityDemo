@@ -11,5 +11,6 @@ public class StaticConfigure implements WebMvcConfigurer {
         registry.addViewController("/home").setViewName("home.html");
         registry.addViewController("/hello").setViewName("hello.html");
         registry.addViewController("/home/welcome").setViewName("welcome.html");
+        registry.addViewController("/message").setViewName("message.html");
     }
 }
