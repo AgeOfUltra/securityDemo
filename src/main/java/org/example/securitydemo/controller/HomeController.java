@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class HomeController {
+    @RequestMapping("/message")
+    public String displayMessage(){
+        return "message.html";
+    }
     @PostMapping("/saveMessage")
     public String displayHome(Message message){
         System.out.println("Message from the frontend is : "+message.toString());
