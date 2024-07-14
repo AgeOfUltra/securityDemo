@@ -36,17 +36,18 @@ public class SecurityConfigurer {
 //                .httpBasic(Customizer.withDefaults());
 
 //        custom Login Page
-        http.csrf(AbstractHttpConfigurer::disable)
+        http.csrf((csrf)->csrf.ignoringRequestMatchers("/saveMessage"))
                 .authorizeHttpRequests((auth) -> auth.requestMatchers("/","/home").permitAll()
                         .requestMatchers("/dashboard").authenticated()
                         .requestMatchers("/message").permitAll()
                         .requestMatchers("/home/welcome").permitAll()
                         .requestMatchers("/hello").permitAll()
                         .requestMatchers("/saveMessage").permitAll()
-                        .requestMatchers("/login").permitAll())
+                        .requestMatchers("/login").permitAll()
+                        .requestMatchers("/logout").permitAll())
                 .formLogin(login -> login.loginPage("/login").defaultSuccessUrl("/dashboard")
                         .failureUrl("/login?error=true").permitAll())
-                .logout(logout->logout.logoutSuccessUrl("/login?logout=true").logoutSuccessUrl("/home")
+                .logout(logout->logout.logoutSuccessUrl("/home")
                         .invalidateHttpSession(true).permitAll())
                 .httpBasic(Customizer.withDefaults());
 
